@@ -56,7 +56,7 @@ HttpListenerResponse res, Hashtable props, Func<Task> next)
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();
     }
-    // curl -X DELETE http://localhost:8080/api/v1/movies/1
+    // curl -X DELETE http://localhost:8080/api/v1/movies/10
     public async Task DeleteMovie(HttpListenerRequest req,
     HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
