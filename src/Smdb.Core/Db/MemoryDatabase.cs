@@ -66,8 +66,8 @@ new Movie(48, "Toy Story", 1995, "Rivalry between a cowboy doll and a space rang
 new Movie(49, "Inside Out", 2015, "A girl’s emotions guide her through a difficult move."),
 new Movie(50, "The Social Network", 2010, "Facebook’s founding sparks friendship and legal battles.")
     });
-}
-public int NextMovieId()
+    }
+    public int NextMovieId()
     {
         return ++nextMovieId;
     }
