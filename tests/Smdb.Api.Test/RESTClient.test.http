@@ -1,0 +1,164 @@
+# Movies API - REST Client file
+@baseUrl = http://localhost:8080
+@api = {{baseUrl}}/api/v1/movies
+
+###
+
+# List movies - page 1
+# Send request
+GET {{api}}?page=1&size=10
+Accept: application/json
+
+###
+
+# List movies - page 2
+# Send request
+GET {{api}}?page=2&size=8
+Accept: application/json
+
+###
+
+# Get one movie
+# Send request
+GET {{api}}/1
+Accept: application/json
+
+###
+
+# Get movie that probably doesn't exist
+# Send request
+GET {{api}}/9999
+Accept: application/json
+
+###
+
+# Create a new movie
+# Send request
+POST {{api}}
+Content-Type: application/json
+
+{
+  "title": "Dune: Part Two",
+  "year": 2024,
+  "description": "Paul Atreides unites with Chani and the Fremen while visions of war haunt his mind."
+}
+
+###
+
+# Create another movie (minimal)
+# Send request
+POST {{api}}
+Content-Type: application/json
+
+{
+  "title": "The Batman Part II",
+  "year": 2026
+}
+
+###
+
+# Update movie (full body)
+# Send request
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+  "title": "Inception - 15th Anniversary",
+  "year": 2010,
+  "description": "A thief who steals corporate secrets through the use of dream-sharing technology..."
+}
+
+###
+
+# Update only some fields
+# Send request
+PUT {{api}}/2
+Content-Type: application/json
+
+{
+  "description": "Updated description - now with more vibes."
+}
+
+###
+
+# Delete a movie
+# Send request
+DELETE {{api}}/5
+Accept: application/json
+
+###
+
+# Try to delete non-existing movie
+# Send request
+DELETE {{api}}/8888
+Accept: application/json
+
+###
+
+# Quick check after changes - first page again
+# Send request
+GET {{api}}?page=1&size=10
+Accept: application/json
+
+# ────────────────────────────────────────────────
+# Useful tips for VS Code / Rider / IntelliJ HTTP Client:
+#
+#   • Click "Send Request" link that appears above each block
+#   • Or use shortcut: Ctrl+Alt+R  (or Alt+Enter in some IDEs)
+#   • Responses appear in a separate pane / tab
+#   • You can chain requests using variables like:
+#       @createdId = {{response body.$.id}}
+# ────────────────────────────────────────────────
+
+
+###
+# Actors API - REST Client file
+@actors = {{baseUrl}}/api/v1/actors
+
+###
+
+# List actors
+GET {{actors}}?page=1&size=10
+Accept: application/json
+
+###
+
+# Get one actor
+GET {{actors}}/1
+Accept: application/json
+
+###
+
+# Create a new actor
+POST {{actors}}
+Content-Type: application/json
+
+{
+  "name": "Leonardo DiCaprio"
+}
+
+###
+
+# Create another actor
+POST {{actors}}
+Content-Type: application/json
+
+{
+  "name": "Tom Hardy"
+}
+
+###
+
+# Update actor
+PUT {{actors}}/1
+Content-Type: application/json
+
+{
+  "name": "Leonardo Wilhelm DiCaprio"
+}
+
+###
+
+# Delete actor
+DELETE {{actors}}/2
+Accept: application/json
