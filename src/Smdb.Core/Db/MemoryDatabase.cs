@@ -2,6 +2,7 @@ namespace Smdb.Core.Db;
 
 using Smdb.Core.Movies;
 using Smdb.Core.Actors;
+using Smdb.Core.Users;        // ← Added this line
 
 public class MemoryDatabase
 {
@@ -15,6 +16,10 @@ public class MemoryDatabase
     public List<Movie> Movies { get; }
     private int nextMovieId;
 
+    // ================= USERS =================   ← NEW SECTION
+    public List<User> Users { get; } = [];
+    private int nextUserId;
+
     public MemoryDatabase()
     {
         Movies = [];
@@ -24,6 +29,10 @@ public class MemoryDatabase
 
         SeedActors();
         nextActorId = Actors.Count;
+
+        // ================= USERS =================
+        SeedUsers();                    // ← Added
+        nextUserId = Users.Count;       // ← Added
     }
 
     // ================= MOVIES =================
@@ -106,6 +115,22 @@ public class MemoryDatabase
             new Actor(3, "Leonardo DiCaprio", 1974, "Oscar-winning actor known for Inception and Titanic."),
             new Actor(4, "Robert Downey Jr.", 1965, "Known for Iron Man and Sherlock Holmes."),
             new Actor(5, "Scarlett Johansson", 1984, "Known for Black Widow and Lost in Translation.")
+        });
+    }
+
+    // ================= USERS =================   ← NEW SECTION
+    public int NextUserId()
+    {
+        return ++nextUserId;
+    }
+
+    private void SeedUsers()
+    {
+        Users.AddRange(new User[]
+        {
+            new User(1, "johndoe", "john@example.com", "John Doe", 1990, "Movie enthusiast and software developer."),
+            new User(2, "janedoe", "jane@example.com", "Jane Doe", 1995, "Avid cinephile who loves sci-fi and thrillers."),
+            new User(3, "admin", "admin@smdb.com", "System Administrator", 1988, "Manages the SimpleMDB platform.")
         });
     }
 }

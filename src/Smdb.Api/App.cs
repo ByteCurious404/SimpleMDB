@@ -3,8 +3,10 @@ namespace Smdb.Api;
 using Shared.Http;
 using Smdb.Api.Movies;
 using Smdb.Api.Actors;
+using Smdb.Api.Users;           // ← Added
 using Smdb.Core.Movies;
 using Smdb.Core.Actors;
+using Smdb.Core.Users;          // ← Added
 using Smdb.Core.Db;
 
 public class App : HttpServer
@@ -25,6 +27,12 @@ public class App : HttpServer
         var actorCtrl = new ActorsController(actorServ);
         var actorRouter = new ActorsRouter(actorCtrl);
 
+        // USERS - NEW
+        var userRepo = new MemoryUserRepository(db);
+        var userServ = new DefaultUserService(userRepo);
+        var userCtrl = new UsersController(userServ);
+        var userRouter = new UsersRouter(userCtrl);
+
         var apiRouter = new HttpRouter();
 
         router.Use(HttpUtils.StructuredLogging);
@@ -39,5 +47,6 @@ public class App : HttpServer
 
         apiRouter.UseRouter("/movies", movieRouter);
         apiRouter.UseRouter("/actors", actorRouter);
+        apiRouter.UseRouter("/users", userRouter);     // ← Added
     }
 }
