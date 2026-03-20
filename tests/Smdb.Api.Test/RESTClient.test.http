@@ -162,3 +162,102 @@ Content-Type: application/json
 # Delete actor
 DELETE {{actors}}/2
 Accept: application/json
+
+###
+
+# ────────────────────────────────────────────────
+# Users API - REST Client file   ← added
+# ────────────────────────────────────────────────
+
+@users = {{baseUrl}}/api/v1/users
+
+###
+
+# List users - page 1
+GET {{users}}?page=1&size=10
+Accept: application/json
+
+###
+
+# List users - smaller page
+GET {{users}}?page=1&size=5
+Accept: application/json
+
+###
+
+# Get one user (from seed data)
+GET {{users}}/1
+Accept: application/json
+
+###
+
+# Get non-existing user
+GET {{users}}/9999
+Accept: application/json
+
+###
+
+# Create a new user (full)
+POST {{users}}
+Content-Type: application/json
+
+{
+  "username": "cinephile2025",
+  "email": "movies@fan.com",
+  "fullName": "Alex Cinema",
+  "birthYear": 1997,
+  "bio": "Watching everything from classics to new releases. 500+ films logged."
+}
+
+###
+
+# Create another user (minimal - only required)
+POST {{users}}
+Content-Type: application/json
+
+{
+  "username": "quicktest",
+  "email": "test.user@example.com"
+}
+
+###
+
+# Update user (full body)
+PUT {{users}}/1
+Content-Type: application/json
+
+{
+  "username": "johndoe_updated",
+  "email": "john.doe.updated@gmail.com",
+  "fullName": "John Michael Doe",
+  "birthYear": 1989,
+  "bio": "Now also into anime and documentaries."
+}
+
+###
+
+# Update only some fields
+PUT {{users}}/2
+Content-Type: application/json
+
+{
+  "bio": "Updated bio - more coffee, more movies, less sleep."
+}
+
+###
+
+# Delete a user
+DELETE {{users}}/3
+Accept: application/json
+
+###
+
+# Try to delete non-existing user
+DELETE {{users}}/7777
+Accept: application/json
+
+###
+
+# Quick check after changes - first page again
+GET {{users}}?page=1&size=10
+Accept: application/json
