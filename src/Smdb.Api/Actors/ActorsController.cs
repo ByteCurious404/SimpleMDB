@@ -33,6 +33,17 @@ public class ActorsController
     {
         var text = (string)props["req.text"]!;
         var actor = JsonSerializer.Deserialize<Actor>(text, JsonSerializerOptions.Web);
+        
+        // COPILOT FIX: Added validation for actor name - check if actor is null or name is null/empty or exceeds 100 characters
+        if (actor == null || string.IsNullOrEmpty(actor.Name) || actor.Name.Length > 100)
+        {
+            var errorResponse = new { error = "Actor name is required and cannot be more than 100 characters." };
+            await HttpUtils.SendResponse(req, res, props, (int)HttpStatusCode.BadRequest, 
+                JsonSerializer.Serialize(errorResponse, JsonSerializerOptions.Web));
+            await next();
+            return;
+        }
+        
         var result = await actorService.CreateActor(actor!);
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();

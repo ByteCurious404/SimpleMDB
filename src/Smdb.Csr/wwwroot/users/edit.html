@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Edit User • Simple Movie Database</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <!-- Added by Copilot: user edit page for update operations -->
+    <!-- Added by Copilot: keeps user form consistent with add/edit flows -->
+  </head>
+  <body>
+    <header>
+      <h1>Edit User</h1>
+      <nav>
+        <ul>
+          <li><a href="/" class="btn">Home</a></li>
+          <li><a href="/users/index.html" class="btn">All Users</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <div id="status" class="status">Loading...</div>
+      <form id="user-form" class="grid">
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input id="fullName" name="fullName" type="text" required />
+        </div>
+        <div class="field">
+          <label for="birthYear">Birth Year</label>
+          <input id="birthYear" name="birthYear" type="number" min="1888" max="9999" required />
+        </div>
+        <div class="field">
+          <label for="bio">Bio</label>
+          <textarea id="bio" name="bio"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Save Changes</button>
+          <a class="btn" href="/users/index.html">Cancel</a>
+        </div>
+      </form>
+    </main>
+    <script type="module" src="/scripts/users/edit.js" defer></script>
+  </body>
+</html>

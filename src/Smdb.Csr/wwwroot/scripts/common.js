@@ -1,3 +1,5 @@
+// Added by Copilot: shared frontend helpers for movies, actors, and users.
+// Added by Copilot: captureActorForm and captureUserForm were added here.
 export const API_BASE = "http://localhost:8080/api/v1";
 export const $ = (sel, el = document) => el.querySelector(sel);
 export const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
@@ -48,4 +50,20 @@ export function captureMovieForm(form) {
   const year = Number(form.year.value);
   const description = form.description.value.trim();
   return { title, year, description };
+}
+
+export function captureActorForm(form) {
+  const name = form.name.value.trim();
+  const birthYear = Number(form.birthYear.value);
+  const biography = form.biography.value.trim();
+  return { name, birthYear, biography };
+}
+
+export function captureUserForm(form) {
+  const username = form.username.value.trim();
+  const email = form.email.value.trim();
+  const fullName = form.fullName.value.trim();
+  const birthYear = Number(form.birthYear.value);
+  const bio = form.bio.value.trim();
+  return { username, email, fullName, birthYear, bio };
 }

@@ -33,6 +33,19 @@ public class UsersController
     {
         var text = (string)props["req.text"]!;
         var user = JsonSerializer.Deserialize<User>(text, JsonSerializerOptions.Web);
+        
+        // COPILOT FIX: Added validation for user fields - check if user is null, or if username/email/fullName are empty or exceed length limits
+        if (user == null || string.IsNullOrEmpty(user.Username) || user.Username.Length > 50 || 
+            string.IsNullOrEmpty(user.Email) || user.Email.Length > 100 ||
+            string.IsNullOrEmpty(user.FullName) || user.FullName.Length > 100)
+        {
+            var errorResponse = new { error = "Username (max 50 chars), Email (max 100 chars), and FullName (max 100 chars) are all required." };
+            await HttpUtils.SendResponse(req, res, props, (int)HttpStatusCode.BadRequest, 
+                JsonSerializer.Serialize(errorResponse, JsonSerializerOptions.Web));
+            await next();
+            return;
+        }
+        
         var result = await userService.CreateUser(user!);
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();

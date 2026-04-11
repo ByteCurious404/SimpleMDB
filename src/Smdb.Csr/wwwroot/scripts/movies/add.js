@@ -20,6 +20,19 @@ import {
     // } else if (...) {
     // ...
     // }
+
+    //New section for the title length validation added
+    if (payload.title.length > 50) {
+      renderStatus(
+        statusEl,
+        "err",
+        "Error 400: Title should not be longer than 50 characters.",
+      );
+      return;
+    }
+
+    //End of the new section for the title length validation
+
     try {
       const created = await apiFetch("/movies", {
         method: "POST",

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>View User • Simple Movie Database</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <!-- Added by Copilot: user detail view page for read operations -->
+    <!-- Added by Copilot: built to mirror other view pages for consistency -->
+  </head>
+  <body>
+    <header>
+      <h1>View User</h1>
+      <nav>
+        <ul>
+          <li><a href="/" class="btn">Home</a></li>
+          <li><a href="/users/index.html" class="btn">All Users</a></li>
+          <li><a id="edit-link" class="btn">Edit</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <div id="status" class="status">Loading...</div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <td id="user-id">—</td>
+          </tr>
+          <tr>
+            <th>Username</th>
+            <td id="user-username">—</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td id="user-email">—</td>
+          </tr>
+          <tr>
+            <th>Full Name</th>
+            <td id="user-fullname">—</td>
+          </tr>
+          <tr>
+            <th>Birth Year</th>
+            <td id="user-year">—</td>
+          </tr>
+          <tr>
+            <th>Bio</th>
+            <td id="user-bio">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script type="module" src="/scripts/users/view.js" defer></script>
+  </body>
+</html>

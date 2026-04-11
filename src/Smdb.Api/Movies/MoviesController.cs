@@ -27,8 +27,18 @@ public async Task CreateMovie(HttpListenerRequest req,
 HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
         var text = (string)props["req.text"]!;
-        var movie = JsonSerializer.Deserialize<Movie>(text,
-        JsonSerializerOptions.Web);
+        var movie = JsonSerializer.Deserialize<Movie>(text,JsonSerializerOptions.Web);
+
+        // COPILOT FIX: Added 400 error validation - checks if movie is null, title is empty, or title exceeds 50 characters
+        if (movie == null || string.IsNullOrEmpty(movie.Title) || movie.Title.Length > 50)
+        {
+            var errorResponse = new { error = "Title is required and cannot be more than 50 characters." };
+            await HttpUtils.SendResponse(req, res, props, (int)HttpStatusCode.BadRequest, 
+                JsonSerializer.Serialize(errorResponse, JsonSerializerOptions.Web));
+            await next();
+            return;
+        }
+        
         var result = await movieService.CreateMovie(movie!);
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();
@@ -47,7 +57,7 @@ HttpListenerResponse res, Hashtable props, Func<Task> next)
 public async Task UpdateMovie(HttpListenerRequest req,
 HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
-        var uParams = (NameValueCollection)props["req,params"]!;
+        var uParams = (NameValueCollection)props["req.params"]!;
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
         var text = (string)props["req.text"]!;
         var movie = JsonSerializer.Deserialize<Movie>(text,

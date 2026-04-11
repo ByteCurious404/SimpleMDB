@@ -32,6 +32,7 @@ import {
   form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     const payload = captureMovieForm(form);
+
     // Input validation and feedback goes here. For example:
     //
     // if(payload.year > new Date().getFullYear()) {
@@ -43,6 +44,7 @@ import {
     try {
       const updated = await apiFetch(`/movies/${encodeURIComponent(id)}`, {
         method: "PUT",
+
         body: JSON.stringify(payload),
       });
       renderStatus(
