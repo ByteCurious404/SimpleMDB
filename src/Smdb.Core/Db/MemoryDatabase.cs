@@ -16,6 +16,10 @@ public class MemoryDatabase
     public List<Movie> Movies { get; }
     private int nextMovieId;
 
+    // ================= MOVIE-ACTORS =================
+    // Added by GitHub Copilot: To store movie-actor relationships
+    public List<MovieActor> MovieActors { get; } = [];
+
     // ================= USERS =================   ← NEW SECTION
     public List<User> Users { get; } = [];
     private int nextUserId;
@@ -29,6 +33,9 @@ public class MemoryDatabase
 
         SeedActors();
         nextActorId = Actors.Count;
+
+        SeedMovieActors();
+        // Added by GitHub Copilot: To seed initial movie-actor relationships
 
         // ================= USERS =================
         SeedUsers();                    // ← Added
@@ -115,6 +122,20 @@ public class MemoryDatabase
             new Actor(3, "Leonardo DiCaprio", 1974, "Oscar-winning actor known for Inception and Titanic."),
             new Actor(4, "Robert Downey Jr.", 1965, "Known for Iron Man and Sherlock Holmes."),
             new Actor(5, "Scarlett Johansson", 1984, "Known for Black Widow and Lost in Translation.")
+        });
+    }
+
+    private void SeedMovieActors()
+    // Added by GitHub Copilot: To provide sample movie-actor data
+    {
+        MovieActors.AddRange(new MovieActor[]
+        {
+            new MovieActor(1, 3), // The Godfather - Leonardo DiCaprio
+            new MovieActor(2, 3), // The Godfather Part II - Leonardo DiCaprio
+            new MovieActor(3, 4), // The Dark Knight - Robert Downey Jr.
+            new MovieActor(10, 3), // Inception - Leonardo DiCaprio
+            new MovieActor(46, 4), // Avengers: Infinity War - Robert Downey Jr.
+            new MovieActor(47, 4), // Avengers: Endgame - Robert Downey Jr.
         });
     }
 

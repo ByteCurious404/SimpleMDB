@@ -21,6 +21,13 @@ public class App : HttpServer
         var movieCtrl = new MoviesController(movieServ);
         var movieRouter = new MoviesRouter(movieCtrl);
 
+        // MOVIE-ACTORS
+        // Added by GitHub Copilot: To register movie-actor services
+        var movieActorRepo = new MemoryMovieActorRepository(db);
+        var movieActorServ = new DefaultMovieActorService(movieActorRepo);
+        var movieActorCtrl = new MovieActorsController(movieActorServ);
+        var movieActorRouter = new MovieActorsRouter(movieActorCtrl);
+
         // ACTORS
         var actorRepo = new MemoryActorRepository(db);
         var actorServ = new DefaultActorService(actorRepo);
@@ -46,6 +53,8 @@ public class App : HttpServer
         router.UseRouter("/api/v1", apiRouter);
 
         apiRouter.UseRouter("/movies", movieRouter);
+        apiRouter.UseRouter("/movie-actors", movieActorRouter);
+        // Added by GitHub Copilot: To include movie-actor routes
         apiRouter.UseRouter("/actors", actorRouter);
         apiRouter.UseRouter("/users", userRouter);     // ← Added
     }

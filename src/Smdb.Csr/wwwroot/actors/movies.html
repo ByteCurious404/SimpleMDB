@@ -1,0 +1,55 @@
+<!-- Added by GitHub Copilot -->
+<!-- To provide UI for movies by actor operations -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies by Actor - SimpleMDB</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Movies by Actor</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/movies/">Movies</a></li>
+                <li><a href="/actors/">Actors</a></li>
+                <li><a href="/users/">Users</a></li>
+                <li><a href="/movie-actors/">Relationships</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="actor-selection">
+            <h2>Select Actor</h2>
+            <select id="actor-select">
+                <option value="">Choose an actor...</option>
+            </select>
+            <button id="load-movies-btn">Load Movies</button>
+        </section>
+
+        <section id="movies-list">
+            <h2>Movies for Selected Actor</h2>
+            <div id="movies-container">
+                <!-- Movies will be loaded here -->
+            </div>
+        </section>
+
+        <section id="add-movie">
+            <h2>Add Movie to Actor</h2>
+            <form id="add-movie-form">
+                <label for="movie-id">Movie ID:</label>
+                <input type="number" id="movie-id" required>
+
+                <button type="submit">Add Movie</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module" src="/scripts/actors/movies.js"></script>
+</body>
+</html>

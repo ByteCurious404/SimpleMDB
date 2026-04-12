@@ -34,6 +34,8 @@ export async function apiFetch(path, opts = {}) {
   return payload;
 }
 
+export const apiCall = apiFetch;
+
 export function renderStatus(el, type, message) {
   if (!el) return;
   el.className = `status ${type}`;

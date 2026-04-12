@@ -1,0 +1,50 @@
+<!-- Added by GitHub Copilot -->
+<!-- To provide UI for managing movie-actor relationships -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie-Actor Relationships - SimpleMDB</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Movie-Actor Relationships</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/movies/">Movies</a></li>
+                <li><a href="/actors/">Actors</a></li>
+                <li><a href="/users/">Users</a></li>
+                <li><a href="/movie-actors/">Relationships</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="relationships-list">
+            <h2>All Relationships</h2>
+            <div id="relationships-container">
+                <!-- Relationships will be loaded here -->
+            </div>
+        </section>
+
+        <section id="add-relationship">
+            <h2>Add New Relationship</h2>
+            <form id="add-relationship-form">
+                <label for="movie-id">Movie ID:</label>
+                <input type="number" id="movie-id" required>
+
+                <label for="actor-id">Actor ID:</label>
+                <input type="number" id="actor-id" required>
+
+                <button type="submit">Add Relationship</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module" src="/scripts/movie-actors/index.js"></script>
+</body>
+</html>
